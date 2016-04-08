@@ -20,6 +20,8 @@ import WorkflowEditor from 'rui-workflow-editor/views/WorkflowEditor';
 import MonoRailApp from './views/MonoRailApp'
 import Settings from './views/Settings';
 
+import GanttChartTest from './views/GanttChartTest';
+
 const main = () => {
   if (global.isTesting) { return; }
 
@@ -40,6 +42,7 @@ const main = () => {
         <Route name="Workflow Editor" path="/we/:workflow" component={WorkflowEditor} />
         <Route name="Settings" path="/settings" component={Settings} />
         <Route name="Settings" path="/settings/help" component={Settings} />
+        <Route name="GCT" path="/gct" component={GanttChartTest} />
         <Route name="Not Found" path="*" component={NotFound} />
       </Route>
     </Router>
