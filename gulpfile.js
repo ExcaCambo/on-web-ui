@@ -1,7 +1,7 @@
 // Copyright 2015, EMC, Inc.
 
 process.on('uncaughtException', (err) => {
-  console.error(err.stack || err);
+  console.error(err && err.stack || err);
 });
 
 global.gulp = require('gulp');

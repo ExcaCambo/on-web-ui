@@ -112,7 +112,8 @@ export default class Store extends EventEmitter {
 
   error(id, error) {
     this.emit(this.event(id, 'error'), error);
-    console.error('Store Error:', this.constructor.name, id, error.stack || error);
+    console.error('Store Error:', this.constructor.name, id,
+      error && error.stack || error);
     if (window.onerror) window.onerror(error.message);
   }
 

@@ -29,8 +29,9 @@ export default class JsonEditor extends Component {
     }
   }
 
-  handleChange(newValue) {
-    let newState;
+  handleChange(event) {
+    let newValue = event.target.value,
+        newState;
 
     try {
       newState = JSON.parse(newValue);
@@ -38,6 +39,7 @@ export default class JsonEditor extends Component {
     }
 
     catch (err) {
+      console.error(err);
       this.setState({rawValue: newValue, error: err});
     }
 

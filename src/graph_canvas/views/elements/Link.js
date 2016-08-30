@@ -33,6 +33,10 @@ export default class GCLinkElement extends Component {
     isPartial: false,
     isRemovable: false,
     onRemove: null,
+    offsetFromX: 0,
+    offsetFromY: 0,
+    offsetToX: 0,
+    offsetToY: 0,
     to: null
   };
 
@@ -116,7 +120,7 @@ export default class GCLinkElement extends Component {
         // console.log('RENDER LINK');
         return this.renderVector(this.state.bounds);
       }
-    } catch (err) { console.error(err.stack || err); }
+    } catch (err) { console.error(err && err.stack || err); }
     return null;
   }
 
@@ -212,13 +216,14 @@ export default class GCLinkElement extends Component {
         </svg>
       );
     } catch (err) {
-      console.error(err.stack || err);
+      console.error(err && err.stack || err);
     }
   }
 
   updateBounds(_retry, _err) {
     if (_retry > 3) { throw _err; }
     _retry = _retry || 0;
+    const props = this.props;
 
     try {
       let fromSocket = this.graphCanvas.lookup(this.state.from, true);
@@ -234,6 +239,7 @@ export default class GCLinkElement extends Component {
         toVector = new Vector(this.state.to);
       }
       else {
+        // debugger;
         toSocket = this.graphCanvas.lookup(this.state.to, true);
         toSocketElement = findDOMNode(toSocket).querySelector('.GraphCanvasSocketIcon');
         toVector = this.linksManager.getSocketCenter(toSocketElement);
@@ -243,7 +249,13 @@ export default class GCLinkElement extends Component {
         // }
       }
 
-      let bounds = new Rectangle(fromVector.x, fromVector.y, toVector.x, toVector.y);
+      let bounds = new Rectangle(
+        fromVector.x + props.offsetFromX,
+        fromVector.y + props.offsetFromY,
+        toVector.x + props.offsetToX,
+        toVector.y + props.offsetToY
+      );
+
       this.setState({ bounds });
     }
 

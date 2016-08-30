@@ -71,12 +71,12 @@ export default class GCLinksManager extends Component {
         c = findDOMNode(c);
         c = c && c.firstChild && c.firstChild.firstChild;
         // y -= Math.max(c.scrollTop,  (c.scrollHeight - c.offsetHeight - 15));
-        if (c) {
+        if (c && c !== element) {
           y -= c.scrollTop;
           x -= c.scrollLeft;
         }
       }
-      catch (err) { console.error(err.stack || err); }
+      catch (err) { console.error(err && err.stack || err); }
 
       if (t && (t.panel || t.node)) { break; }
 

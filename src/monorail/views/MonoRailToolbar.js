@@ -111,12 +111,12 @@ export default class MonoRailToolbar extends Component {
                   primaryText="Management Console" />
             </Link>
 
-            {/*<Link to="/nt" style={linkStyle}>
+            <Link to="/nt" style={linkStyle}>
               <ListItem
                   style={getLinkStyle('nt')}
                   leftIcon={<FontIcon className="fa fa-fw fa-sitemap fa-rotate-270" style={getIconStyle('nt')}/>}
                   primaryText="Network Topology" />
-            </Link>*/}
+            </Link>
 
             <Link to="/oc" style={linkStyle}>
               <ListItem
@@ -125,25 +125,18 @@ export default class MonoRailToolbar extends Component {
                   primaryText="Operations Center" />
             </Link>
 
-            <Link to="/sp" style={linkStyle}>
-              <ListItem
-                  style={getLinkStyle('sp')}
-                  leftIcon={<FontIcon className="fa fa-cubes fa-rotate-90" style={getIconStyle('sp')}/>}
-                  primaryText="SKU Packs" />
-            </Link>
-
-            {/*<Link to="/va" style={linkStyle}>
-              <ListItem
-                  style={getLinkStyle('va')}
-                  leftIcon={<FontIcon className="fa fa-fw fa-pie-chart" style={getIconStyle('va')}/>}
-                  primaryText="Visual Analytics" />
-            </Link>*/}
-
             <Link to="/we" style={linkStyle}>
               <ListItem
                   style={getLinkStyle('we')}
                   leftIcon={<FontIcon className="fa fa-fw fa-code-fork fa-rotate-90" style={getIconStyle('we')}/>}
                   primaryText="Workflow Editor" />
+            </Link>
+
+            <Link to="/sp" style={linkStyle}>
+              <ListItem
+                  style={getLinkStyle('sp')}
+                  leftIcon={<FontIcon className="fa fa-cubes fa-rotate-90" style={getIconStyle('sp')}/>}
+                  primaryText="SKU Packs" />
             </Link>
 
             <Link to="/settings" style={linkStyle}>

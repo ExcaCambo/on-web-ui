@@ -7,7 +7,7 @@ import RackHDRestAPIv1_1 from '../messengers/RackHDRestAPIv1_1';
 export default class NodeStore extends Store {
 
   list(q) {
-    this.empty();
+    // this.empty();
     return RackHDRestAPIv1_1.lookups.list(q)
       .then(list => this.recollect(list))
       .catch(err => this.error(null, err));

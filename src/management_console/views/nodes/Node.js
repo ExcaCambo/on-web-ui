@@ -132,12 +132,12 @@ export default class Node extends Component {
                     data={state.obm || {}} /></div>}
             </div>
 
-            <WorkflowsGrid nodeId={this.getNodeId()} />
+            {!this.props.noWorkflows && <WorkflowsGrid nodeId={this.getNodeId()} />}
             <CatalogsGrid nodeId={this.getNodeId()} />
-            <PollersGrid nodeId={this.getNodeId()} />
+            {!this.props.noPollers && <PollersGrid nodeId={this.getNodeId()} />}
 
           </Tab>
-          <Tab
+          {!this.props.noConsole  && <Tab
               icon={<FontIcon className="fa fa-terminal" />}
               label="Console">
 
@@ -155,7 +155,7 @@ export default class Node extends Component {
                 }).catch(cb);
               }} />
 
-          </Tab>
+          </Tab>}
           <Tab
               icon={<FontIcon className="fa fa-edit" />}
               label="Editor">

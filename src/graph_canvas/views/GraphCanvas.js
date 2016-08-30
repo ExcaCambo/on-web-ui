@@ -47,7 +47,8 @@ export default class GraphCanvas extends Component {
     onChange: null,
     onSelect: null,
     onLink: null,
-    onUnlink: null
+    onUnlink: null,
+    limitSelected: false
   };
 
   static childContextTypes = {
@@ -156,6 +157,14 @@ export default class GraphCanvas extends Component {
     }
     else if (index !== -1) { this.selected.splice(index, 1); }
     if (this.props.onSelect) { this.props.onSelect(this.selected); }
+  }
+
+  clearSelection() {
+    this.selected.forEach(selectedNode => {
+      if (selectedNode && selectedNode.refs.panel) {
+        selectedNode.refs.panel.toggleSelected(true);
+      }
+    });
   }
 
   lookup(id, throwWhenMissing) {

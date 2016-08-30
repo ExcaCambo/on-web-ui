@@ -244,7 +244,10 @@ export default class GCPanelElement extends Component {
       boxSizing: 'border-box',
       height: '100%',
       overflow: 'hidden',
-      padding: 5,
+      paddingBottom: 5,
+      paddingLeft: 5,
+      paddingRight: 5,
+      paddingTop: 5,
       transition: 'border 0.4s ease-out',
       width: 'auto'
     }
@@ -270,8 +273,8 @@ export default class GCPanelElement extends Component {
         this.css.inputs,
         props.css.inputs,
         this.css.colorInput,
-        props.css.colorInput,
-        {width: (this.state.color.length + 1) + 'ex'}
+        {width: (this.state.color.length + 1) + 'ex'},
+        props.css.colorInput
       ],
       content: [
         this.css.content,
@@ -285,8 +288,8 @@ export default class GCPanelElement extends Component {
         this.css.inputs,
         props.css.inputs,
         this.css.nameInput,
-        props.css.nameInput,
-        {width: (this.state.name.length + 1) + 'ex'}
+        {width: (this.state.name.length + 1) + 'ex'},
+        props.css.nameInput
       ],
       remove: [
         this.css.remove,
@@ -328,9 +331,12 @@ export default class GCPanelElement extends Component {
 
   stopEventPropagation(e) { e.stopPropagation(); }
 
-  toggleSelected() {
+  toggleSelected(skipLimiter) {
     let selected = !this.state.selected;
     this.setState({ selected });
+    if (!skipLimiter && this.graphCanvas.props.limitSelected) {
+      this.graphCanvas.clearSelection();
+    }
     this.graphCanvas.updateSelection(selected, this.props.parent || this);
     if (this.props.onSelect) {
       this.props.onSelect(selected);
